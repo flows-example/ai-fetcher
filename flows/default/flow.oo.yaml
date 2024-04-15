@@ -1,0 +1,32 @@
+nodes:
+  [
+    {
+        task: LLM::openai,
+        node_id: 35294896-de3a-437e-ac50-6c625bb8239d,
+        inputs_from:
+          [
+            {
+                handle: api_key,
+                cache: { initial_value: sk-WMfRcsS9UZAPaTQJGXautJ0rBeuw27PtUFEEUZN2f79Rxnl8 }
+              },
+            { handle: source, cache: { initial_value: Moonshot } },
+            { handle: role, cache: { initial_value: user } },
+            {
+                handle: text,
+                cache: { initial_value: 用 Python 写一段代码，读取一个 yaml 并转化成 JSON 格式。 }
+              },
+            { handle: temperature, cache: { initial_value: 0.775 } }
+          ]
+      },
+    {
+        task: common::markdown_preview,
+        node_id: 141efb03-7484-4f97-95f3-ff871646a26a,
+        inputs_from:
+          [
+            {
+                handle: text,
+                from_node: [ { node_id: 35294896-de3a-437e-ac50-6c625bb8239d, output_handle: text } ]
+              }
+          ]
+      }
+  ]
